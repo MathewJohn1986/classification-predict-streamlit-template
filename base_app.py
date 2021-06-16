@@ -41,13 +41,18 @@ def main():
 
 	# Creates a main title and subheader on your page -
 	# these are static across all pages
-	st.title("Tweet Classifer")
+	st.title("Climate Change Belief Classification")
 	st.subheader("Climate change tweet classification")
 
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
-	options = ["Prediction", "Information"]
-	selection = st.sidebar.selectbox("Choose Option", options)
+	options = ["Welcome","Login","Signup", "Prediction", "Information"]
+	selection = st.sidebar.selectbox("Menu", options)
+
+	# Building out the "Information" page
+	if selection == "Welcome":
+		st.subheader("Welcome")
+		st.markdown("This is a simple app that will predict wether or not people believe in climate change. It will help Geo- Enviromental companies who are turning to social media to obtain valuable information about job applicants and to monitor their employees activities in relation to their values and beliefs on climate change")
 
 	# Building out the "Information" page
 	if selection == "Information":
@@ -61,11 +66,15 @@ def main():
 
 	# Building out the predication page
 	if selection == "Prediction":
+		st.subheader("Prediction")
 		st.info("Prediction with ML Models")
-		# Creating a text box for user input
-		tweet_text = st.text_area("Enter Text","Type Here")
-
+	# Creating a text box for user input
+		sentiment = st.number_input("Sentiment",0 ,1)
+		tweet = st.text_area("Tweet","Type here")
+		user = st.text_area("User","type here")
+	
 		if st.button("Classify"):
+	
 			# Transforming user input with vectorizer
 			vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
