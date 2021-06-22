@@ -29,6 +29,12 @@ import joblib,os
 import pandas as pd
 
 # Vectorizer
+# Creating Lemmatizer Function
+class LemmaTokenizer(object):
+    def __init__(self):
+        self.wnl = WordNetLemmatizer()
+    def __call__(self, text):
+        return [self.wnl.lemmatize(t) for t in word_tokenize(text)]
 news_vectorizer = open("resources/vect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
 
