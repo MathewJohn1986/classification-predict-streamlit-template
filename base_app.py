@@ -113,24 +113,24 @@ def main():
 		st.info("Prediction with ML Models")
 	# Creating a text box for user input
 		#sentiment = st.number_input("Sentiment",0 ,1, -1, 2)
-		tweet = st.text_area("Tweet","Type here")
+		tweet_text = st.text_area("Tweet","Type here")
 		#user = st.text_area("User","type here")
 		model_selection = st.selectbox("Select Model",["Random_Forest", "Decision_Tree", "Logistic_Regression"])
 
 	
-		if st.button("Classify") and (model_selection == "Random_Forest"):
+		if st.button("Classify"):
 	
 			# Transforming user input with vectorizer
-			vect_text = tweet_cv.transform([tweet]).toarray()
+			vect_text = tweet_cv.transform([tweet_text])
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
 			predictor1 = joblib.load(open(os.path.join("resources/rf.pickle"),"rb"))
-			prediction1 = predictor1.predict(vect_text)
+			rf_prediction = predictor1.predict(vect_text)
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
 			# more human interpretable.
-			st.success("Text Categorized as: {}".format(prediction1))
+			st.success("Text Categorized as: {}".format(rf_prediction))
 			
 		#if (st.button("Classify")) and (model_selection == "Decision_Tree"):
 	
