@@ -109,28 +109,47 @@ def main():
 
 	# Building out the predication page
 	if selection == "Prediction":
-		st.subheader("Prediction")
 		st.info("Prediction with ML Models")
-	# Creating a text box for user input
-		#sentiment = st.number_input("Sentiment",0 ,1, -1, 2)
-		tweet_text = st.text_area("Tweet","Type here")
-		#user = st.text_area("User","type here")
-		model_selection = st.selectbox("Select Model",["Random_Forest", "Decision_Tree", "Logistic_Regression"])
+		# Creating a text box for user input
+		tweet_text = st.text_area("Enter Text","Type Here")
 
-	
 		if st.button("Classify"):
-	
 			# Transforming user input with vectorizer
-			vect_text = tweet_cv.transform([tweet_text])
+			vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
-			predictor1 = joblib.load(open(os.path.join("resources/rf.pickle"),"rb"))
-			rf_prediction = predictor1.predict(vect_text)
+			predictor = joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
+			prediction = predictor.predict(vect_text)
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
 			# more human interpretable.
-			st.success("Text Categorized as: {}".format(rf_prediction))
+			st.success("Text Categorized as: {}".format(prediction))
+	
+	
+	#if selection == "Prediction":
+	#	st.subheader("Prediction")
+	#	st.info("Prediction with ML Models")
+	# Creating a text box for user input
+		#sentiment = st.number_input("Sentiment",0 ,1, -1, 2)
+	#	tweet_text = st.text_area("Tweet","Type here")
+		#user = st.text_area("User","type here")
+		#model_selection = st.selectbox("Select Model",["Random_Forest", "Decision_Tree", "Logistic_Regression"])
+
+	
+		#if st.button("Classify"):
+	
+			# Transforming user input with vectorizer
+			#vect_text = tweet_cv.transform([tweet_text])
+			# Load your .pkl file with the model of your choice + make predictions
+			# Try loading in multiple models to give the user a choice
+			#predictor1 = joblib.load(open(os.path.join("resources/rf.pickle"),"rb"))
+			#rf_prediction = predictor1.predict(vect_text)
+
+			# When model has successfully run, will print prediction
+			# You can use a dictionary or similar structure to make this output
+			# more human interpretable.
+			#st.success("Text Categorized as: {}".format(rf_prediction))
 			
 		#if (st.button("Classify")) and (model_selection == "Decision_Tree"):
 	
