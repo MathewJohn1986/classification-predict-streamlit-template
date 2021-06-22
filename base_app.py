@@ -30,12 +30,7 @@ import pandas as pd
 
 # Vectorizer
 # Creating Lemmatizer Function
-class LemmaTokenizer(object):
-    def __init__(self):
-        self.wnl = WordNetLemmatizer()
-    def __call__(self, text):
-        return [self.wnl.lemmatize(t) for t in word_tokenize(text)]
-news_vectorizer = open("resources/vect.pkl","rb")
+news_vectorizer = open("resources/tfidfvect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
 
 # Load your raw data
@@ -82,45 +77,34 @@ def main():
 	if selection == "Exploratory Data Analysis":
 		st.subheader("Exploratory Data Analysis")
 	
-	#To improve speed and cache data
-	@st.cache(persist=True)
-	def get_data(raw):
-		df = pd.read_csv(raw)
-		return df
+		#To improve speed and cache data
+		@st.cache(persist=True)
+		def get_data(raw):
+			df = pd.read_csv(raw)
+			return df
 
-	if st.checkbox("Preview DataFrame"):
-		data = get_data(raw)
-	if st.button("Head"):
-		st.write(data.head())
-	if st.button("Tail"):
-		st.write(data.tail())
+		if st.checkbox("Preview DataFrame"):
+			data = get_data(raw)
+		if st.button("Head"):
+			st.write(data.head())
+		if st.button("Tail"):
+			st.write(data.tail())
 
-	#Show Entire Data frame
-	if st.checkbox("Show All Dataframe"):
-		data = get_data(raw)
-		st.dataframe(data)
+		#Show Entire Data frame
+		if st.checkbox("Show All Dataframe"):
+			data = get_data(raw)
+			st.dataframe(data)
 
-	#Show Description
-	if st.checkbox("Show All Column Names"):
-		data = get_data(raw)
-		st.text("Columns:")
-		st.write("data.columns")
+		#Show Description
+		if st.checkbox("Show All Column Names"):
+			data = get_data(raw)
+			st.text("Columns:")
+			st.write("data.columns")
 
-	#Show summary
-	if st.checkbox("Show Summary of Dataset"):
-		data = get_data(raw)
-		st.write(data.describe())
-
-
-
-
-
-	
-	
-
-
-
-
+		#Show summary
+		if st.checkbox("Show Summary of Dataset"):
+			data = get_data(raw)
+			st.write(data.describe())
 
 
 	# Building out the predication page
@@ -140,11 +124,11 @@ def main():
 			vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
-			predictor1 = joblib.load(open(os.path.join("resources/rf.pkl"),"rb"))
+			predictor1 = joblib.load(open(os.path.join("resources/rf.pickle"),"rb"))
 			prediction1 = predictor.predict(vect_text)
-			predictor2 = joblib.load(open(os.path.join("resources/dt.pkl"),"rb"))
+			predictor2 = joblib.load(open(os.path.join("resources/dt.pickle"),"rb"))
 			prediction2 = predictor2.predict(vect_text)
-			predictor3 = joblib.load(open(os.path.join("resources/logreg.pkl"),"rb"))
+			predictor3 = joblib.load(open(os.path.join("resources/logreg.pickle"),"rb"))
 			prediction3 = predictor3.predict(vect_text)
 
 			# When model has successfully run, will print prediction
