@@ -112,31 +112,42 @@ def main():
 		st.subheader("Prediction")
 		st.info("Prediction with ML Models")
 	# Creating a text box for user input
-		sentiment = st.number_input("Sentiment",0 ,1, -1, 2)
+		#sentiment = st.number_input("Sentiment",0 ,1, -1, 2)
 		tweet = st.text_area("Tweet","Type here")
-		user = st.text_area("User","type here")
+		#user = st.text_area("User","type here")
 		model_selection = st.selectbox("Select Model",["Random_Forest", "Decision_Tree", "Logistic_Regression"])
 
 	
-		if st.button("Classify"):
+		if st.button("Classify") and model_selection = "Random_Forest":
 	
 			# Transforming user input with vectorizer
-			vect_text = tweet_cv.transform([tweet_text]).toarray()
+			vect_text = tweet_cv.transform([tweet]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
 			predictor1 = joblib.load(open(os.path.join("resources/rf.pickle"),"rb"))
 			prediction1 = predictor.predict(vect_text)
-			predictor2 = joblib.load(open(os.path.join("resources/dt.pickle"),"rb"))
-			prediction2 = predictor2.predict(vect_text)
-			predictor3 = joblib.load(open(os.path.join("resources/logreg.pickle"),"rb"))
-			prediction3 = predictor3.predict(vect_text)
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
 			# more human interpretable.
 			st.success("Text Categorized as: {}".format(prediction1))
+			
+		if st.button("Classify") and model_selection = "Decision_Tree":
+	
+			# Transforming user input with vectorizer
+			vect_text = tweet_cv.transform([tweet]).toarray()
+			# Load your .pkl file with the model of your choice + make predictions
+			# Try loading in multiple models to give the user a choice
+			predictor2 = joblib.load(open(os.path.join("resources/dt.pickle"),"rb"))
+			prediction2 = predictor2.predict(vect_text)
+			#predictor3 = joblib.load(open(os.path.join("resources/logreg.pickle"),"rb"))
+			#prediction3 = predictor3.predict(vect_text)
+
+			# When model has successfully run, will print prediction
+			# You can use a dictionary or similar structure to make this output
+			# more human interpretable.
 			st.success("Text Categorized as: {}".format(prediction2))
-			st.success("Text Categorized as: {}".format(prediction3))
+			#st.success("Text Categorized as: {}".format(prediction3))
 
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
