@@ -132,7 +132,7 @@ def main():
 			# more human interpretable.
 			st.success("Text Categorized as: {}".format(prediction1))
 			
-		if st.button("Classify") and model_selection = "Decision_Tree":
+		if (st.button("Classify")) and (model_selection == "Decision_Tree"):
 	
 			# Transforming user input with vectorizer
 			vect_text = tweet_cv.transform([tweet]).toarray()
