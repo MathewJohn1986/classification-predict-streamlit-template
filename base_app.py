@@ -46,23 +46,76 @@ def main():
 
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
-	options = ["Welcome","Login","Signup", "Prediction", "Information"]
+	options = ["Home","Information","Exploratory Data Analysis", "Prediction" ]
 	selection = st.sidebar.selectbox("Menu", options)
 
-	# Building out the "Information" page
-	if selection == "Welcome":
-		st.subheader("Welcome")
+
+
+	# Building out the "Home" page
+	if selection == "Home":
+		st.subheader("Home")
 		st.markdown("This is a simple app that will predict wether or not people believe in climate change. It will help Geo- Enviromental companies who are turning to social media to obtain valuable information about job applicants and to monitor their employees activities in relation to their values and beliefs on climate change")
+
+
 
 	# Building out the "Information" page
 	if selection == "Information":
 		st.info("General Information")
 		# You can read a markdown file from supporting resources folder
-		st.markdown("Some information here")
+		st.markdown("Climate change is a periodic modification of Earth’s climate brought about as a result of changes in the atmosphere as well as interactions between the atmosphere and various other geologic, chemical, biological, and geographic factors within the Earth system.")
 
+		st.markdown("Many companies are built around lessening one’s environmental impact or carbon footprint. They offer products and services that are environmentally friendly and sustainable, in line with their values and ideals. They would like to determine how people perceive climate change and whether or not they believe it is a real threat. This would add to their market research efforts in gauging how their product/service may be received.")
+
+		st.markdown("We were challenged  during the Classification Sprint with the task of creating a Machine Learning model that is able to classify whether or not a person believes in climate change, based on their novel tweet data.")
 		st.subheader("Raw Twitter data and label")
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
 			st.write(raw[['sentiment', 'message']]) # will write the df to the page
+
+	#Building out the "Exploratory Data Ananlysis" page
+	
+	if selection == "Exploratory Data Analysis":
+		st.subheader("Exploratory Data Analysis")
+	
+	#To improve speed and cache data
+	@st.cache(persist=True)
+	def get_data(raw):
+		df = pd.read_csv(raw)
+		return df
+
+	if st.checkbox("Preview DataFrame"):
+		data = get_data(raw)
+	if st.button("Head"):
+		st.write(data.head())
+	if st.button("Tail"):
+		st.write(data.tail())
+
+	#Show Entire Data frame
+	if st.checkbox("Show All Dataframe"):
+		data = get_data(raw)
+		st.dataframe(data)
+
+	#Show Description
+	if st.checkbox("Show All Column Names"):
+		data = get_data(raw)
+		st.text("Columns:")
+		st.write("data.columns")
+
+	#Show summary
+	if st.checkbox("Show Summary of Dataset"):
+		data = get_data(raw)
+		st.write(data.describe())
+
+
+
+
+
+	
+	
+
+
+
+
+
 
 	# Building out the predication page
 	if selection == "Prediction":
@@ -72,6 +125,8 @@ def main():
 		sentiment = st.number_input("Sentiment",0 ,1)
 		tweet = st.text_area("Tweet","Type here")
 		user = st.text_area("User","type here")
+		model_selection = st.selectbox("Select Model",["LR","KNN","DecisionTree"])
+
 	
 		if st.button("Classify"):
 	
