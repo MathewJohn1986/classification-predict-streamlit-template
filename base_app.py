@@ -131,7 +131,7 @@ def main():
 			vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
-			predictor = joblib.load(open(os.path.join("resources/dt.pickle"),"rb"))
+			predictor = joblib.load(open(os.path.join("resources/dt.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 
 			# When model has successfully run, will print prediction
@@ -139,12 +139,12 @@ def main():
 			# more human interpretable.
 			st.success("Text Categorized as: {}".format(prediction))
 			
-		if st.button("Classify with Random Forest Model"):
+		if st.button("Classify with Support Vector Machine (SVM) Model"):
 			# Transforming user input with vectorizer
 			vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
-			predictor = joblib.load(open(os.path.join("resources/rf.pickle"),"rb"))
+			predictor = joblib.load(open(os.path.join("resources/rf.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 
 			# When model has successfully run, will print prediction
