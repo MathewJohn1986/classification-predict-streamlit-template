@@ -118,7 +118,7 @@ def main():
 		model_selection = st.selectbox("Select Model",["Random_Forest", "Decision_Tree", "Logistic_Regression"])
 
 	
-		if st.button("Classify") and model_selection = "Random_Forest":
+		if (st.button("Classify")) and (model_selection == "Random_Forest"):
 	
 			# Transforming user input with vectorizer
 			vect_text = tweet_cv.transform([tweet]).toarray()
