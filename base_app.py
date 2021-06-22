@@ -80,7 +80,7 @@ def main():
 		#To improve speed and cache data
 		@st.cache(persist=True)
 		def get_data(raw):
-			df = pd.read_csv(raw)
+			df = pd.read_csv("resources/train.csv")
 			return df
 
 		if st.checkbox("Preview DataFrame"):
