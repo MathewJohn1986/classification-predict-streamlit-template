@@ -29,7 +29,7 @@ import joblib,os
 import pandas as pd
 
 # Vectorizer
-news_vectorizer = open("resources/tfidfvect.pkl","rb")
+news_vectorizer = open("resources/vect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
 
 # Load your raw data
@@ -122,10 +122,10 @@ def main():
 		st.subheader("Prediction")
 		st.info("Prediction with ML Models")
 	# Creating a text box for user input
-		sentiment = st.number_input("Sentiment",0 ,1)
+		sentiment = st.number_input("Sentiment",0 ,1, -1, 2)
 		tweet = st.text_area("Tweet","Type here")
 		user = st.text_area("User","type here")
-		model_selection = st.selectbox("Select Model",["LR","KNN","DecisionTree"])
+		model_selection = st.selectbox("Select Model",["Random_Forest", "Decision_Tree", "Logistic_Regression"])
 
 	
 		if st.button("Classify"):
@@ -134,13 +134,19 @@ def main():
 			vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
-			predictor = joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
-			prediction = predictor.predict(vect_text)
+			predictor1 = joblib.load(open(os.path.join("resources/rf.pkl"),"rb"))
+			prediction1 = predictor.predict(vect_text)
+			predictor2 = joblib.load(open(os.path.join("resources/dt.pkl"),"rb"))
+			prediction2 = predictor2.predict(vect_text)
+			predictor3 = joblib.load(open(os.path.join("resources/logreg.pkl"),"rb"))
+			prediction3 = predictor3.predict(vect_text)
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
 			# more human interpretable.
-			st.success("Text Categorized as: {}".format(prediction))
+			st.success("Text Categorized as: {}".format(prediction1))
+			st.success("Text Categorized as: {}".format(prediction2))
+			st.success("Text Categorized as: {}".format(prediction3))
 
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
