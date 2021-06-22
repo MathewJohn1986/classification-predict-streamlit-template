@@ -125,7 +125,7 @@ def main():
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
 			predictor1 = joblib.load(open(os.path.join("resources/rf.pickle"),"rb"))
-			prediction1 = predictor.predict(vect_text)
+			prediction1 = predictor1.predict(vect_text)
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
