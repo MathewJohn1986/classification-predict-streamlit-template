@@ -139,7 +139,7 @@ def main():
 			# more human interpretable.
 			st.success("Text Categorized as: {}".format(prediction))
 			
-		if st.button("Classify with Support Vector Machine (SVM) Model"):
+		if st.button("Classify with K-Nearest Neighbors Model"):
 			# Transforming user input with vectorizer
 			vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Load your .pkl file with the model of your choice + make predictions
