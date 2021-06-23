@@ -56,7 +56,7 @@ def main():
 	if selection == "Home":
 		st.subheader("Home")
 		st.markdown("This is a simple app that will predict wether or not people believe in climate change. It will help Geo- Enviromental companies who are turning to social media to obtain valuable information about job applicants and to monitor their employees activities in relation to their values and beliefs on climate change")
-		st.image("resourses/climate-word-map.jpg")
+		st.image("resources/climate-word-map.jpg")
 
 
 	# Building out the "Information" page
