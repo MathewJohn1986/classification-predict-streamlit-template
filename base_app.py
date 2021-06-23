@@ -99,7 +99,7 @@ def main():
 		if st.checkbox("Show All Column Names"):
 			data = get_data(raw)
 			st.text("Columns:")
-			st.write("data.columns")
+			st.write(data.columns)
 
 		#Show summary
 		if st.checkbox("Show Summary of Dataset"):
