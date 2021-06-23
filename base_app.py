@@ -109,7 +109,7 @@ def main():
 		#Show plots
 		if st.checkbox("Show Bar Plot"):
 			data = get_data(raw)
-			st.bar_chart("data")
+			st.bar_chart(data)
 		#Show Wordcloud
 		if st.checkbox("Show Negative Word cloud"):
 			st.image("resources/Negative_Cloud.png")
