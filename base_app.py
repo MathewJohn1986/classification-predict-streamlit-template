@@ -107,6 +107,17 @@ def main():
 			st.write(data.describe())
 
 
+		#Show Wordcloud
+		if st.checkbox("Show Negative Word cloud")
+			st.image("resources/Negative_Cloud.png")
+		if st.checkbox("Show Neutral Word Cloud"
+			st.image("resources/Neutral_Cloud.png)
+		if st.checkbox("Show News Word Cloud")
+			st.image("resources/News_Cloud.png")
+		if st.checkbox("Show Positive Word Cloud)
+			st.image("resources/Positive_Cloud.png")
+			       
+	
 	# Building out the predication page
 	if selection == "Prediction":
 		st.info("Prediction with ML Models")
