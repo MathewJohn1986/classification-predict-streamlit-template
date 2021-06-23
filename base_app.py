@@ -111,7 +111,7 @@ def main():
 	if selection == "Prediction":
 		st.info("Prediction with ML Models")
 		# Creating a text box for user input
-		tweet_text = st.text_area("Enter Text","Type something Here")
+		tweet_text = st.text_area("Enter Text","Type Here")
 
 		if st.button("Classify with Logistic Regression Model"):
 			# Transforming user input with vectorizer
