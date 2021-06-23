@@ -107,7 +107,7 @@ def main():
 			st.write(data.describe())
 
 		#Show plots
-		if st.checkbox("Show Bar Plot")
+		if st.checkbox("Show Bar Plot"):
 			st.bar_chart("raw")
 		#Show Wordcloud
 		if st.checkbox("Show Negative Word cloud"):
