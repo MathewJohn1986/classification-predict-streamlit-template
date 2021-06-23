@@ -56,7 +56,7 @@ def main():
 	if selection == "Home":
 		st.subheader("Home")
 		st.markdown("This is a simple app that will predict wether or not people believe in climate change. It will help Geo- Enviromental companies who are turning to social media to obtain valuable information about job applicants and to monitor their employees activities in relation to their values and beliefs on climate change")
-
+		st.image("resourses/climate-word-map.jpg")
 
 
 	# Building out the "Information" page
@@ -64,7 +64,7 @@ def main():
 		st.info("General Information")
 		# You can read a markdown file from supporting resources folder
 		st.markdown("Climate change is a periodic modification of Earth’s climate brought about as a result of changes in the atmosphere as well as interactions between the atmosphere and various other geologic, chemical, biological, and geographic factors within the Earth system.")
-
+		st.image("resources/climate change.jpg")
 		st.markdown("Many companies are built around lessening one’s environmental impact or carbon footprint. They offer products and services that are environmentally friendly and sustainable, in line with their values and ideals. They would like to determine how people perceive climate change and whether or not they believe it is a real threat. This would add to their market research efforts in gauging how their product/service may be received.")
 
 		st.markdown("We were challenged  during the Classification Sprint with the task of creating a Machine Learning model that is able to classify whether or not a person believes in climate change, based on their novel tweet data.")
