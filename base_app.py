@@ -107,9 +107,21 @@ def main():
 			st.write(data.describe())
 
 		#Show plots
-		if st.checkbox("Show Bar Plot"):
-			data = get_data(raw)
-			st.bar_chart(data)
+		if st.checkbox("Show Most Popular Tags"):
+			st.image("resources/Most_Popular_Tags.png")
+		if st.checkbox("Show Neutral Tags"):
+			st.image("resources/Neutral_Tags.png")
+		if st.checkbox("Show Negative Tags"):
+			st.image("resources/Negative_Tags.png")
+		if st.checkbox("Show News Tags"):
+			st.image("resources/News_Tags.png")
+		if st.checkbox("Show Number Of Messages Per Sentiment"):
+			st.image("resources/Number_of_Messages_Per_Sentiment.png")
+		if st.checkbox("Show Numerial Distribution"):
+			st.image("resources/Numerical Distribution.png")
+		if st.checkbox("Show Positive Tags"):
+			st.image("resources/Positive_Tags.png")
+		
 		#Show Wordcloud
 		if st.checkbox("Show Negative Word cloud"):
 			st.image("resources/Negative_Cloud.png")
